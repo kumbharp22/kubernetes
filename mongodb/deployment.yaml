@@ -21,6 +21,12 @@ spec:
            - containerPort: 27017
           env:
            - name: MONGO_INITDB_ROOT_USERNAME
-             value:
+             valueFrom:
+               secretKeyRef:
+                 name: mongodb-secret    # name of the secret created
+                 key: username           # this value is from data section of secret.yaml
            - name: MONGO_INITDB_ROOT_PASSWORD
-             value:
+             valueFrom:
+               secretKeyRef:
+                 name: mongodb-secret    # name of the secret created
+                 key: password           # this value is from data section of secret.yaml
