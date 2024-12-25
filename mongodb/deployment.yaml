@@ -30,3 +30,17 @@ spec:
                secretKeyRef:
                  name: mongodb-secret    # name of the secret created
                  key: password           # this value is from data section of secret.yaml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-internal-serv
+spec:
+  selector:          # connect to pod through label
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017    # service port
+      targetPort: 27017    # containerPort of deployment
+                           
