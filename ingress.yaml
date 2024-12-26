@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata: 
+  name: myapp-ingress
+spec:
+  rules:          # routing rules are specified
+   - host: myapp.com    # request coming to this host should be forwarded to serviveName
+     http:             # incoming request gets forwarded to internal service
+       paths:         # url path
+        - backend:
+            serviceName: myapp-internal-service    # receives forwarded request from host
+            servicePort: 8080
